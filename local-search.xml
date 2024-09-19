@@ -4,7 +4,39 @@
   
   
   <entry>
-    <title>numberOfPoints</title>
+    <title>最长的字母序连续子字符串的长度</title>
+    <link href="/2024/09/19/longestContinuousSubstring/"/>
+    <url>/2024/09/19/longestContinuousSubstring/</url>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p><strong>字母序连续字符串</strong> 是由字母表中连续字母组成的字符串。换句话说，字符串 <code>&quot;abcdefghijklmnopqrstuvwxyz&quot;</code> 的任意子字符串都是 <strong>字母序连续字符串</strong> 。</p><ul><li>例如，<code>&quot;abc&quot;</code> 是一个字母序连续字符串，而 <code>&quot;acb&quot;</code> 和 <code>&quot;za&quot;</code> 不是。</li></ul><p>给你一个仅由小写英文字母组成的字符串 <code>s</code> ，返回其 <strong>最长</strong> 的 字母序连续子字符串 的长度。</p><p><strong>示例 1：</strong></p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abacaba&quot;</span><br>输出：<span class="hljs-number">2</span><br>解释：共有 <span class="hljs-number">4</span> 个不同的字母序连续子字符串 <span class="hljs-string">&quot;a&quot;</span>、<span class="hljs-string">&quot;b&quot;</span>、<span class="hljs-string">&quot;c&quot;</span> 和 <span class="hljs-string">&quot;ab&quot;</span> 。<br><span class="hljs-string">&quot;ab&quot;</span> 是最长的字母序连续子字符串。<br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">输入：s <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abcde&quot;</span><br>输出：<span class="hljs-number">5</span><br>解释：<span class="hljs-string">&quot;abcde&quot;</span> 是最长的字母序连续子字符串。<br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= s.length &lt;= 105</code></li><li><code>s</code> 由小写英文字母组成</li></ul><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>通过<code>ASCII码</code>比较是否为连续字符串，记录连续的字符串数目<code>count</code></p><p>若不连续，则下次从第<code>i+count</code>处开始查找</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs fortran"><span class="hljs-keyword">class</span> Solution &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> longestContinuousSubstring(string s) &#123;<br>        <span class="hljs-built_in">int</span> n = s.length();<br>        <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">max</span> = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> <span class="hljs-built_in">count</span>;<br>        <span class="hljs-keyword">while</span>(i &lt; n)&#123;<br>            <span class="hljs-built_in">count</span> = <span class="hljs-number">1</span>;<br>            for(<span class="hljs-built_in">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; j++)&#123;<br>                <span class="hljs-keyword">if</span>((s[i] + <span class="hljs-built_in">count</span>) == s[j])&#123;<br>                    <span class="hljs-built_in">count</span>++;<br>                &#125;<br>                <span class="hljs-keyword">else</span> break;<br>            &#125;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">count</span> &gt; <span class="hljs-built_in">max</span>)<br>            <span class="hljs-built_in">max</span> = <span class="hljs-built_in">count</span>;<br>        i = i + <span class="hljs-built_in">count</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>;<br>        <br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>getNum</title>
+    <link href="/2024/09/17/getNum/"/>
+    <url>/2024/09/17/getNum/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>与车相交的点</title>
     <link href="/2024/09/15/numberOfPoints/"/>
     <url>/2024/09/15/numberOfPoints/</url>
     
@@ -29,7 +61,7 @@
   
   
   <entry>
-    <title>twoSum</title>
+    <title>两数之和</title>
     <link href="/2024/09/14/twoSum/"/>
     <url>/2024/09/14/twoSum/</url>
     
@@ -50,7 +82,7 @@
   
   
   <entry>
-    <title>maxNumOfMarkedIndices</title>
+    <title>求出最多标记下标</title>
     <link href="/2024/09/12/maxNumOfMarkedIndices/"/>
     <url>/2024/09/12/maxNumOfMarkedIndices/</url>
     
@@ -71,19 +103,6 @@
       <tag>双指针</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>DailyCode</title>
-    <link href="/2024/09/11/DailyCode/"/>
-    <url>/2024/09/11/DailyCode/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
     
   </entry>
   
