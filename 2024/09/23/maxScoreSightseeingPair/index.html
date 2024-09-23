@@ -19,23 +19,23 @@
   <meta name="author" content="Z_jay">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目描述卡车有两个油箱。给你两个整数，mainTank 表示主油箱中的燃料（以升为单位），additionalTank 表示副油箱中的燃料（以升为单位）。 该卡车每耗费 1 升燃料都可以行驶 10 km。每当主油箱使用了 5 升燃料时，如果副油箱至少有 1 升燃料，则会将 1 升燃料从副油箱转移到主油箱。 返回卡车可以行驶的最大距离。 注意：从副油箱向主油箱注入燃料不是连续行为。这一事件会在每消耗">
+    <meta name="description" content="题目描述给你一个正整数数组 values，其中 values[i] 表示第 i 个观光景点的评分，并且两个景点 i 和 j 之间的 距离 为 j - i。 一对景点（i &lt; j）组成的观光组合的得分为 values[i] + values[j] + i - j ，也就是景点的评分之和 减去 它们两者之间的距离。 返回一对观光景点能取得的最高分。 示例 1： 123输入：values &#x3D; [8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="总行驶距离">
-<meta property="og:url" content="http://example.com/2024/09/21/distanceTraveled/index.html">
+<meta property="og:title" content="最佳观光组合">
+<meta property="og:url" content="http://example.com/2024/09/23/maxScoreSightseeingPair/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目描述卡车有两个油箱。给你两个整数，mainTank 表示主油箱中的燃料（以升为单位），additionalTank 表示副油箱中的燃料（以升为单位）。 该卡车每耗费 1 升燃料都可以行驶 10 km。每当主油箱使用了 5 升燃料时，如果副油箱至少有 1 升燃料，则会将 1 升燃料从副油箱转移到主油箱。 返回卡车可以行驶的最大距离。 注意：从副油箱向主油箱注入燃料不是连续行为。这一事件会在每消耗">
+<meta property="og:description" content="题目描述给你一个正整数数组 values，其中 values[i] 表示第 i 个观光景点的评分，并且两个景点 i 和 j 之间的 距离 为 j - i。 一对景点（i &lt; j）组成的观光组合的得分为 values[i] + values[j] + i - j ，也就是景点的评分之和 减去 它们两者之间的距离。 返回一对观光景点能取得的最高分。 示例 1： 123输入：values &#x3D; [8">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-21T14:54:33.000Z">
-<meta property="article:modified_time" content="2024-09-23T14:03:48.880Z">
+<meta property="article:published_time" content="2024-09-23T13:54:39.000Z">
+<meta property="article:modified_time" content="2024-09-23T14:03:33.580Z">
 <meta property="article:author" content="Z_jay">
-<meta property="article:tag" content="数字">
-<meta property="article:tag" content="模拟">
+<meta property="article:tag" content="数组">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>总行驶距离 - Hexo</title>
+  <title>最佳观光组合 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="总行驶距离"></span>
+            <span id="subtitle" data-typed-text="最佳观光组合"></span>
           
         </div>
 
@@ -212,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-21 22:54" pubdate>
-          2024年9月21日 晚上
+        <time datetime="2024-09-23 21:54" pubdate>
+          2024年9月23日 晚上
         </time>
       </span>
     
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          355 字
+          379 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -272,27 +272,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">总行驶距离</h1>
+            <h1 id="seo-header">最佳观光组合</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>卡车有两个油箱。给你两个整数，<code>mainTank</code> 表示主油箱中的燃料（以升为单位），<code>additionalTank</code> 表示副油箱中的燃料（以升为单位）。</p>
-<p>该卡车每耗费 <code>1</code> 升燃料都可以行驶 <code>10</code> km。每当主油箱使用了 <code>5</code> 升燃料时，如果副油箱至少有 <code>1</code> 升燃料，则会将 <code>1</code> 升燃料从副油箱转移到主油箱。</p>
-<p>返回卡车可以行驶的最大距离。</p>
-<p>注意：从副油箱向主油箱注入燃料不是连续行为。这一事件会在每消耗 <code>5</code> 升燃料时突然且立即发生。</p>
+                <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个正整数数组 <code>values</code>，其中 <code>values[i]</code> 表示第 <code>i</code> 个观光景点的评分，并且两个景点 <code>i</code> 和 <code>j</code> 之间的 <strong>距离</strong> 为 <code>j - i</code>。</p>
+<p>一对景点（<code>i &lt; j</code>）组成的观光组合的得分为 <code>values[i] + values[j] + i - j</code> ，也就是景点的评分之和 <strong>减去</strong> 它们两者之间的距离。</p>
+<p>返回一对观光景点能取得的最高分。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：mainTank = 5, additionalTank = 10<br>输出：60<br>解释：<br>在用掉<span class="hljs-number"> 5 </span>升燃料后，主油箱中燃料还剩下 (5 -<span class="hljs-number"> 5 </span>+ 1) =<span class="hljs-number"> 1 </span>升，行驶距离为 50km 。<br>在用掉剩下的<span class="hljs-number"> 1 </span>升燃料后，没有新的燃料注入到主油箱中，主油箱变为空。<br>总行驶距离为 60km 。<br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">输入：values = <span class="hljs-selector-attr">[8,1,5,2,6]</span><br>输出：<span class="hljs-number">11</span><br>解释：<span class="hljs-selector-tag">i</span> = <span class="hljs-number">0</span>, j = <span class="hljs-number">2</span>, values<span class="hljs-selector-attr">[i]</span> + values<span class="hljs-selector-attr">[j]</span> + <span class="hljs-selector-tag">i</span> - j = <span class="hljs-number">8</span> + <span class="hljs-number">5</span> + <span class="hljs-number">0</span> - <span class="hljs-number">2</span> = <span class="hljs-number">11</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：mainTank </span>=<span class="hljs-string"> 1, additionalTank = 2</span><br><span class="hljs-string">输出：10</span><br><span class="hljs-string">解释：</span><br><span class="hljs-string">在用掉 1 升燃料后，主油箱变为空。</span><br><span class="hljs-string">总行驶距离为 10km 。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：values </span>=<span class="hljs-string"> [1,2]</span><br><span class="hljs-string">输出：2</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>1 &lt;= mainTank, additionalTank &lt;= 100</code></li>
+<li><code>2 &lt;= values.length &lt;= 5 * 104</code></li>
+<li><code>1 &lt;= values[i] &lt;= 1000</code></li>
 </ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>数学问题，只需考虑每五公里给主油箱中补充<code>1</code>单位的副油箱，计算距离即可</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> distanceTraveled(<span class="hljs-built_in">int</span> mainTank, <span class="hljs-built_in">int</span> additionalTank) &#123;<br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> distance = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(mainTank&gt;<span class="hljs-number">0</span>)&#123;<br>            distance++;<br>            <span class="hljs-keyword">count</span>++;<br>            mainTank--;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">count</span>==<span class="hljs-number">5</span> &amp;&amp; additionalTank!=<span class="hljs-number">0</span>)&#123;<br>                <span class="hljs-keyword">count</span>=<span class="hljs-number">0</span>;<br>                additionalTank--;<br>                mainTank++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> distance*<span class="hljs-number">10</span>;<br>    &#125;<br>    <br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>基本解法为建立for循环嵌套语句，得到最大的<code>score</code>，但时间复杂度为O(n^2)，在问题规模过大时会导致超时</p>
+<p>考虑时间复杂度为O(n)的算法：</p>
+<p>​	初始思路，将<code>i</code>、<code>j</code>初始化为0和1，变量k遍历<code>values</code>数组，若出现新的符合条件的<code>score</code>，<code>i</code>、<code>j</code>其中一个变为k。该算法更像贪心算法，当较大的符合条件的点连续出现尾端时，显然无法实现</p>
+<p>​	将<code>values[i] + i</code>和<code>values[j] - j</code>看作两个整体变量，只需遍历一次数组找出二者的最大值即可，需注意满足<code>i&lt;j</code>的条件</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>public:<br>    <span class="hljs-keyword">int</span> maxScoreSightseeingPair(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; <span class="hljs-keyword">values</span>) &#123;<br>        <span class="hljs-keyword">int</span> mx = <span class="hljs-keyword">values</span>[<span class="hljs-number">0</span>] + <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> n = values.size();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++)&#123;<br>            ans = max(ans, mx + <span class="hljs-keyword">values</span>[i] - i);<br>            mx = max(mx, <span class="hljs-keyword">values</span>[i]+i);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -327,9 +330,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%97/" class="print-no-link">#数字</a>
+        <a href="/tags/%E6%95%B0%E7%BB%84/" class="print-no-link">#数组</a>
       
-        <a href="/tags/%E6%A8%A1%E6%8B%9F/" class="print-no-link">#模拟</a>
+        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="print-no-link">#动态规划</a>
       
     </div>
   
@@ -341,8 +344,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>总行驶距离</div>
-      <div>http://example.com/2024/09/21/distanceTraveled/</div>
+      <div>最佳观光组合</div>
+      <div>http://example.com/2024/09/23/maxScoreSightseeingPair/</div>
     </div>
     <div class="license-meta">
       
@@ -354,7 +357,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月21日</div>
+          <div>2024年9月23日</div>
         </div>
       
       
@@ -386,18 +389,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/22/findJudge/" title="找到小镇的法官">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">找到小镇的法官</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/21/countSpecialNumbers/" title="统计特殊整数">
-                        <span class="hidden-mobile">统计特殊整数</span>
+                      <a href="/2024/09/22/findJudge/" title="找到小镇的法官">
+                        <span class="hidden-mobile">找到小镇的法官</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
