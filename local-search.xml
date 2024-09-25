@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>边积分最高的节点</title>
+    <link href="/2024/09/25/edgeScore/"/>
+    <url>/2024/09/25/edgeScore/</url>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个有向图，图中有 <code>n</code> 个节点，节点编号从 <code>0</code> 到 <code>n - 1</code> ，其中每个节点都 <strong>恰有一条</strong> 出边。</p><p>图由一个下标从 <strong>0</strong> 开始、长度为 <code>n</code> 的整数数组 <code>edges</code> 表示，其中 <code>edges[i]</code> 表示存在一条从节点 <code>i</code> 到节点 <code>edges[i]</code> 的 <strong>有向</strong> 边。</p><p>节点 <code>i</code> 的 <strong>边积分</strong> 定义为：所有存在一条指向节点 <code>i</code> 的边的节点的 <strong>编号</strong> 总和。</p><p>返回 <strong>边积分</strong> 最高的节点。如果多个节点的 <strong>边积分</strong> 相同，返回编号 <strong>最小</strong> 的那个。</p><p><strong>示例 1：</strong></p><p><img src="https://assets.leetcode.com/uploads/2022/06/20/image-20220620195403-1.png" alt="img"></p><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：edges = [1,0,0,0,0,7,7,5]<br>输出：7<br>解释：<br>- 节点 1、2、3 和<span class="hljs-number"> 4 </span>都有指向节点<span class="hljs-number"> 0 </span>的边，节点<span class="hljs-number"> 0 </span>的边积分等于<span class="hljs-number"> 1 </span>+<span class="hljs-number"> 2 </span>+<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 4 </span>=<span class="hljs-number"> 10 </span>。<br>- 节点<span class="hljs-number"> 0 </span>有一条指向节点<span class="hljs-number"> 1 </span>的边，节点<span class="hljs-number"> 1 </span>的边积分等于<span class="hljs-number"> 0 </span>。<br>- 节点<span class="hljs-number"> 7 </span>有一条指向节点<span class="hljs-number"> 5 </span>的边，节点<span class="hljs-number"> 5 </span>的边积分等于<span class="hljs-number"> 7 </span>。<br>- 节点<span class="hljs-number"> 5 </span>和<span class="hljs-number"> 6 </span>都有指向节点<span class="hljs-number"> 7 </span>的边，节点<span class="hljs-number"> 7 </span>的边积分等于<span class="hljs-number"> 5 </span>+<span class="hljs-number"> 6 </span>=<span class="hljs-number"> 11 </span>。<br>节点<span class="hljs-number"> 7 </span>的边积分最高，所以返回<span class="hljs-number"> 7 </span>。<br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><p><img src="https://assets.leetcode.com/uploads/2022/06/20/image-20220620200212-3.png" alt="img"></p><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：edges = [2,0,0,2]<br>输出：0<br>解释：<br>- 节点<span class="hljs-number"> 1 </span>和<span class="hljs-number"> 2 </span>都有指向节点<span class="hljs-number"> 0 </span>的边，节点<span class="hljs-number"> 0 </span>的边积分等于<span class="hljs-number"> 1 </span>+<span class="hljs-number"> 2 </span>=<span class="hljs-number"> 3 </span>。<br>- 节点<span class="hljs-number"> 0 </span>和<span class="hljs-number"> 3 </span>都有指向节点<span class="hljs-number"> 2 </span>的边，节点<span class="hljs-number"> 2 </span>的边积分等于<span class="hljs-number"> 0 </span>+<span class="hljs-number"> 3 </span>=<span class="hljs-number"> 3 </span>。<br>节点<span class="hljs-number"> 0 </span>和<span class="hljs-number"> 2 </span>的边积分都是<span class="hljs-number"> 3 </span>。由于节点<span class="hljs-number"> 0 </span>的编号更小，返回<span class="hljs-number"> 0 </span>。<br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>n == edges.length</code></li><li><code>2 &lt;= n &lt;= 105</code></li><li><code>0 &lt;= edges[i] &lt; n</code></li><li><code>edges[i] != i</code></li></ul><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>图中共有<code>n</code>个顶点，每个顶点只有一条有向边指向其他顶点，统计被指向的顶点数目<code>score[edge[i]]</code>，最大的<code>score</code>值即为所求顶点</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1> <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">edgeScore</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; edges)</span> </span>&#123;<br>        <span class="hljs-type">int</span> n = edges.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">long</span>&gt; <span class="hljs-title">score</span><span class="hljs-params">(n,<span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++)&#123;<br>            score[edges[i]] +=i;<br>        &#125;<br>        <span class="hljs-type">long</span> max = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> point = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n;i++)&#123;<br>            <span class="hljs-keyword">if</span>(score[i] &gt; max)&#123;<br>                max = score[i];<br>                point = i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> point;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日一题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>图</tag>
+      
+      <tag>哈希表</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>两数相加</title>
     <link href="/2024/09/24/addTwoNumbers/"/>
     <url>/2024/09/24/addTwoNumbers/</url>
