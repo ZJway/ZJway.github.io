@@ -4,6 +4,86 @@
   
   
   <entry>
+    <title>SocketFront</title>
+    <link href="/2024/09/30/SocketFront/"/>
+    <url>/2024/09/30/SocketFront/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SocketServer</title>
+    <link href="/2024/09/30/SocketServer/"/>
+    <url>/2024/09/30/SocketServer/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>timeRequiredToBuy</title>
+    <link href="/2024/09/30/timeRequiredToBuy/"/>
+    <url>/2024/09/30/timeRequiredToBuy/</url>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>有 <code>n</code> 个人前来排队买票，其中第 <code>0</code> 人站在队伍 <strong>最前方</strong> ，第 <code>(n - 1)</code> 人站在队伍 <strong>最后方</strong> 。</p><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>tickets</code> ，数组长度为 <code>n</code> ，其中第 <code>i</code> 人想要购买的票数为 <code>tickets[i]</code> 。</p><p>每个人买票都需要用掉 <strong>恰好 1 秒</strong> 。一个人 <strong>一次只能买一张票</strong> ，如果需要购买更多票，他必须走到 <strong>队尾</strong> 重新排队（<strong>瞬间</strong> 发生，不计时间）。如果一个人没有剩下需要买的票，那他将会 <strong>离开</strong> 队伍。</p><p>返回位于位置 <code>k</code>（下标从 <strong>0</strong> 开始）的人完成买票需要的时间（以秒为单位）。</p><p><strong>示例 1：</strong></p><p><strong>输入：</strong>tickets &#x3D; [2,3,2], k &#x3D; 2</p><p><strong>输出：</strong>6</p><p><strong>解释：</strong></p><ul><li>队伍一开始为 [2,3,2]，第 k 个人以下划线标识。</li><li>在最前面的人买完票后，队伍在第 1 秒变成 [3,2,1]。</li><li>继续这个过程，队伍在第 2 秒变为[2,1,2]。</li><li>继续这个过程，队伍在第 3 秒变为[1,2,1]。</li><li>继续这个过程，队伍在第 4 秒变为[2,1]。</li><li>继续这个过程，队伍在第 5 秒变为[1,1]。</li><li>继续这个过程，队伍在第 6 秒变为[1]。第 k 个人完成买票，所以返回 6。</li></ul><p><strong>示例 2：</strong></p><p><strong>输入：</strong>tickets &#x3D; [5,1,1,1], k &#x3D; 0</p><p><strong>输出：</strong>8</p><p><strong>解释：</strong></p><ul><li>队伍一开始为 [5,1,1,1]，第 k 个人以下划线标识。</li><li>在最前面的人买完票后，队伍在第 1 秒变成 [1,1,1,4]。</li><li>继续这个过程 3 秒，队伍在第 4 秒变为[4]。</li><li>继续这个过程 4 秒，队伍在第 8 秒变为[]。第 k 个人完成买票，所以返回 8。</li></ul><p><strong>提示：</strong></p><ul><li><code>n == tickets.length</code></li><li><code>1 &lt;= n &lt;= 100</code></li><li><code>1 &lt;= tickets[i] &lt;= 100</code></li><li><code>0 &lt;= k &lt; n</code></li></ul><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p> 利用循环队列<code>i++ % n</code>的思维，重复买票过程记录时间</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> timeRequiredToBuy(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; tickets, <span class="hljs-built_in">int</span> k) &#123;<br>        <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> n = tickets.size();<br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(tickets[k] != <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">if</span>(tickets[i] != <span class="hljs-number">0</span>)&#123;<br>                tickets[i]--;<br>                <span class="hljs-keyword">count</span>++;<br>            &#125;<br>            i++;<br>            i = i % n;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">count</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日一题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数组</tag>
+      
+      <tag>模拟</tag>
+      
+      <tag>队列</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>isPalindrome</title>
+    <link href="/2024/09/27/isPalindrome/"/>
+    <url>/2024/09/27/isPalindrome/</url>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数 <code>x</code> ，如果 <code>x</code> 是一个回文整数，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p><p>回文数</p><p>是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p><ul><li>例如，<code>121</code> 是回文，而 <code>123</code> 不是。</li></ul><p><strong>示例 1：</strong></p><figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">121</span><br>输出：<span class="hljs-symbol">true</span><br></code></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">-121</span><br>输出：<span class="hljs-symbol">false</span><br>解释：从左向右读, 为 <span class="hljs-number">-121</span> 。 从右向左读, 为 <span class="hljs-number">121</span>- 。因此它不是一个回文数。<br></code></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">10</span><br>输出：<span class="hljs-symbol">false</span><br>解释：从右向左读, 为 <span class="hljs-number">01</span> 。因此它不是一个回文数。<br></code></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>-231 &lt;= x &lt;= 231 - 1</code></li></ul><p><strong>进阶：</strong>你能不将整数转为字符串来解决这个问题吗？</p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">bool</span> isPalindrome(<span class="hljs-built_in">int</span> x) &#123;<br>        <span class="hljs-built_in">string</span> s = std::to_string(x);<br>        <span class="hljs-built_in">int</span> n = s.length();<br><br>        <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> j = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(i &lt; j)&#123;<br>            <span class="hljs-keyword">if</span>(s[i] != s[j])<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            i++;<br>            j--;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>每日一题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数组元素和与数字和的绝对差</title>
     <link href="/2024/09/26/differenceOfSum/"/>
     <url>/2024/09/26/differenceOfSum/</url>
@@ -20,9 +100,9 @@
     
     <tags>
       
-      <tag>数学</tag>
-      
       <tag>数组</tag>
+      
+      <tag>数学</tag>
       
     </tags>
     
@@ -87,11 +167,11 @@
     
     <tags>
       
+      <tag>数学</tag>
+      
       <tag>递归</tag>
       
       <tag>链表</tag>
-      
-      <tag>数学</tag>
       
     </tags>
     
@@ -116,9 +196,9 @@
     
     <tags>
       
-      <tag>动态规划</tag>
-      
       <tag>数组</tag>
+      
+      <tag>动态规划</tag>
       
     </tags>
     

@@ -19,26 +19,22 @@
   <meta name="author" content="Z_jay">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目描述给你一个下标从 0 开始的整数数组 nums 。 一开始，所有下标都没有被标记。你可以执行以下操作任意次：  选择两个 互不相同且未标记 的下标 i 和 j ，满足 2 * nums[i] &lt;&#x3D; nums[j] ，标记下标 i 和 j 。  请你执行上述操作任意次，返回 nums 中最多可以标记的下标数目。 示例 1： 1234输入：nums &#x3D; [3,5,2,4]输出：2解释：第一">
+    <meta name="description" content="题目描述给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。 回文数 是指正序（从左向右）和倒序（从右向左）读都是一样的整数。  例如，121 是回文，而 123 不是。  示例 1： 12输入：x &#x3D; 121输出：true  示例 2： 123输入：x &#x3D; -121输出：false解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="求出最多标记下标">
-<meta property="og:url" content="http://example.com/2024/09/12/maxNumOfMarkedIndices/index.html">
+<meta property="og:title" content="isPalindrome">
+<meta property="og:url" content="http://example.com/2024/09/27/isPalindrome/index.html">
 <meta property="og:site_name" content="一个不知名的小站">
-<meta property="og:description" content="题目描述给你一个下标从 0 开始的整数数组 nums 。 一开始，所有下标都没有被标记。你可以执行以下操作任意次：  选择两个 互不相同且未标记 的下标 i 和 j ，满足 2 * nums[i] &lt;&#x3D; nums[j] ，标记下标 i 和 j 。  请你执行上述操作任意次，返回 nums 中最多可以标记的下标数目。 示例 1： 1234输入：nums &#x3D; [3,5,2,4]输出：2解释：第一">
+<meta property="og:description" content="题目描述给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。 回文数 是指正序（从左向右）和倒序（从右向左）读都是一样的整数。  例如，121 是回文，而 123 不是。  示例 1： 12输入：x &#x3D; 121输出：true  示例 2： 123输入：x &#x3D; -121输出：false解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-12T03:19:41.000Z">
-<meta property="article:modified_time" content="2024-09-23T14:03:57.518Z">
+<meta property="article:published_time" content="2024-09-27T13:20:14.000Z">
+<meta property="article:modified_time" content="2024-09-27T13:49:51.978Z">
 <meta property="article:author" content="Z_jay">
-<meta property="article:tag" content="每日一题">
-<meta property="article:tag" content="贪心">
-<meta property="article:tag" content="排序">
-<meta property="article:tag" content="二分查找">
-<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>求出最多标记下标 - 一个不知名的小站</title>
+  <title>isPalindrome - 一个不知名的小站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="求出最多标记下标"></span>
+            <span id="subtitle" data-typed-text="isPalindrome"></span>
           
         </div>
 
@@ -215,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-12 11:19" pubdate>
-          2024年9月12日 上午
+        <time datetime="2024-09-27 21:20" pubdate>
+          2024年9月27日 晚上
         </time>
       </span>
     
@@ -227,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          514 字
+          210 字
         
       </span>
     
@@ -238,7 +234,7 @@
         
         
         
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -275,36 +271,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">求出最多标记下标</h1>
+            <h1 id="seo-header">isPalindrome</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 。</p>
-<p>一开始，所有下标都没有被标记。你可以执行以下操作任意次：</p>
+                <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数 <code>x</code> ，如果 <code>x</code> 是一个回文整数，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p>回文数</p>
+<p>是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
 <ul>
-<li>选择两个 <strong>互不相同且未标记</strong> 的下标 <code>i</code> 和 <code>j</code> ，满足 <code>2 * nums[i] &lt;= nums[j]</code> ，标记下标 <code>i</code> 和 <code>j</code> 。</li>
+<li>例如，<code>121</code> 是回文，而 <code>123</code> 不是。</li>
 </ul>
-<p>请你执行上述操作任意次，返回 <code>nums</code> 中最多可以标记的下标数目。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：nums = [3,5,2,4]<br>输出：2<br>解释：第一次操作中，选择 i =<span class="hljs-number"> 2 </span>和 j =<span class="hljs-number"> 1 </span>，操作可以执行的原因是<span class="hljs-number"> 2 </span>* nums[2] &lt;= nums[1] ，标记下标<span class="hljs-number"> 2 </span>和<span class="hljs-number"> 1 </span>。<br>没有其他更多可执行的操作，所以答案为<span class="hljs-number"> 2 </span>。<br></code></pre></td></tr></table></figure>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">121</span><br>输出：<span class="hljs-symbol">true</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入：nums = [9,2,5,4]<br>输出：4<br>解释：第一次操作中，选择 i =<span class="hljs-number"> 3 </span>和 j =<span class="hljs-number"> 0 </span>，操作可以执行的原因是<span class="hljs-number"> 2 </span>* nums[3] &lt;= nums[0] ，标记下标<span class="hljs-number"> 3 </span>和<span class="hljs-number"> 0 </span>。<br>第二次操作中，选择 i =<span class="hljs-number"> 1 </span>和 j =<span class="hljs-number"> 2 </span>，操作可以执行的原因是<span class="hljs-number"> 2 </span>* nums[1] &lt;= nums[2] ，标记下标<span class="hljs-number"> 1 </span>和<span class="hljs-number"> 2 </span>。<br>没有其他更多可执行的操作，所以答案为<span class="hljs-number"> 4 </span>。<br></code></pre></td></tr></table></figure>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">-121</span><br>输出：<span class="hljs-symbol">false</span><br>解释：从左向右读, 为 <span class="hljs-number">-121</span> 。 从右向左读, 为 <span class="hljs-number">121</span>- 。因此它不是一个回文数。<br></code></pre></td></tr></table></figure>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [7,6,8]</span><br><span class="hljs-string">输出：0</span><br><span class="hljs-string">解释：没有任何可以执行的操作，所以答案为 0 。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gml">输入：<span class="hljs-variable language_">x</span> = <span class="hljs-number">10</span><br>输出：<span class="hljs-symbol">false</span><br>解释：从右向左读, 为 <span class="hljs-number">01</span> 。因此它不是一个回文数。<br></code></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>-231 &lt;= x &lt;= 231 - 1</code></li>
 </ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>考虑满足标记的条件为<code>2 * nums[i] &lt;= nums[j]</code>，这题基本解为双指针</p>
-<p>因为满足大小关系，先对数组进行排序后遍历求解，但不是最优解</p>
-<p>由于数组长度为<code>size</code>，最大可能的标记数为<code>size/2</code>，此时每个<code>nums[i]</code>都能和<code>nums[size/2+i]</code>进行标记，贪心算法</p>
-<p>若<code>标记数&lt;size/2</code>，也必将满足<code>2 * nums[i] &lt;= nums[j]</code>的<code>j &gt;size/2+i</code></p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxNumOfMarkedIndices</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> size = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">flag</span><span class="hljs-params">(size, <span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> tag = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i&lt;size; i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = size/<span class="hljs-number">2</span>+i; j&lt;size;j++)&#123;<br>                <span class="hljs-keyword">if</span>(flag[i]==<span class="hljs-number">0</span> &amp;&amp; flag[j]==<span class="hljs-number">0</span> &amp;&amp; <span class="hljs-number">2</span>*nums[i] &lt;= nums[j])&#123;<br>                    tag = tag + <span class="hljs-number">2</span>;<br>                    flag[i]=<span class="hljs-number">1</span>;<br>                    flag[j]=<span class="hljs-number">1</span>;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>        &#125;  <br>        <span class="hljs-keyword">return</span> tag;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>进阶：</strong>你能不将整数转为字符串来解决这个问题吗？</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">bool</span> isPalindrome(<span class="hljs-built_in">int</span> x) &#123;<br>        <span class="hljs-built_in">string</span> s = std::to_string(x);<br>        <span class="hljs-built_in">int</span> n = s.length();<br><br>        <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">int</span> j = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(i &lt; j)&#123;<br>            <span class="hljs-keyword">if</span>(s[i] != s[j])<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            i++;<br>            j--;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -339,15 +331,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="print-no-link">#每日一题</a>
-      
-        <a href="/tags/%E8%B4%AA%E5%BF%83/" class="print-no-link">#贪心</a>
-      
-        <a href="/tags/%E6%8E%92%E5%BA%8F/" class="print-no-link">#排序</a>
-      
-        <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="print-no-link">#二分查找</a>
-      
-        <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#双指针</a>
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
     </div>
   
@@ -359,8 +343,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>求出最多标记下标</div>
-      <div>http://example.com/2024/09/12/maxNumOfMarkedIndices/</div>
+      <div>isPalindrome</div>
+      <div>http://example.com/2024/09/27/isPalindrome/</div>
     </div>
     <div class="license-meta">
       
@@ -372,7 +356,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月12日</div>
+          <div>2024年9月27日</div>
         </div>
       
       
@@ -404,9 +388,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/14/twoSum/" title="两数之和">
+                      <a href="/2024/09/30/timeRequiredToBuy/" title="timeRequiredToBuy">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">两数之和</span>
+                        <span class="hidden-mobile">timeRequiredToBuy</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -414,8 +398,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/11/CP/" title="CP">
-                        <span class="hidden-mobile">CP</span>
+                      <a href="/2024/09/26/differenceOfSum/" title="数组元素和与数字和的绝对差">
+                        <span class="hidden-mobile">数组元素和与数字和的绝对差</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
